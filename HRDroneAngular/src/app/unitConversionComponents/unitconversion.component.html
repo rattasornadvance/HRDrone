@@ -1,0 +1,354 @@
+<div *ngIf="isLoading" style="position:absolute; top: 50%; left: 50%; z-index: 10000;">
+  <img src="../assets/layout/images/preloader.gif">
+  {{loadingText}}
+</div>
+<div *ngIf="!isLoading">
+  <div class="container" style="margin-top:30px">
+    <div class="row">
+      <div class="col-6">
+        <div class="card border-primary">
+          <div class="card-header">Area</div>
+          <div class="card-body">
+            <table style="width: 100%;">
+              <tr>
+                <td>
+                  <label>Value:</label>
+                </td>
+                <td>
+                  <input type="number" maxlength="50" placeholder="1" (keyup.enter)='btnSearchArea_click()'
+                    [(ngModel)]="txtAreaValue">
+                </td>
+                <td>
+                  <select class="custom-select" [(ngModel)]="selectedUnitArea">
+                    <option *ngFor="let item of unitAreaArry;let i=index" [value]="item.unitArea">
+                      {{item.unitDisplay}}
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="1">
+                  <button type="button" class="btn btn-primary btn-sm" (click)="btnSearchArea_click()">Search</button>
+                </td>
+                <td colspan="2">{{loadingTextArea}}</td>
+              </tr>
+              <tr>
+                <td colspan="3"><br></td>
+              </tr>
+              <tr>
+                <td colspan="3">Result : </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <label>{{calAreaAcre}} acre</label>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <label>{{calAreaM2}} sq.m</label>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <label>{{calAreaRai}} rai</label>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="card-footer">
+            <table>
+              <tr>
+                <td>
+                  <input type="number" maxlength="50" placeholder="1" [(ngModel)]="txtAreaValue1"
+                    (keyup.enter)='cmbArea_onChange()'>
+                </td>
+                <td>
+                  <select class="custom-select" [(ngModel)]="selectedUnitArea1" (ngModelChange)="cmbArea_onChange()">
+                    <option *ngFor="let item of unitAreaArry;let i=index" [value]="item.unitArea">
+                      {{item.unitDisplay}}
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">Convert</td>
+              </tr>
+              <tr>
+                <td>
+                  <input type="number" readonly="true" maxlength="50" placeholder="1" [(ngModel)]="txtAreaValue2">
+                </td>
+                <td>
+                  <select class="custom-select" [(ngModel)]="selectedUnitArea2" (ngModelChange)="cmbArea_onChange()">
+                    <option *ngFor="let item of unitAreaArry;let i=index" [value]="item.unitArea">
+                      {{item.unitDisplay}}
+                    </option>
+                  </select>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card border-primary">
+          <div class="card-header">Distance</div>
+          <div class="card-body">
+            <table style="width: 100%;">
+              <tr>
+                <td>
+                  <label>Value:</label>
+                </td>
+                <td>
+                  <input type="number" maxlength="50" placeholder="1" (keyup.enter)='btnSearchDistance_click()'
+                    [(ngModel)]="txtDistanceValue">
+                </td>
+                <td>
+                  <select class="custom-select" [(ngModel)]="selectedUnitDistance">
+                    <option *ngFor="let item of unitDistanceArry;let i=index" [value]="item.unitDistance">
+                      {{item.unitDisplay}}
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="1">
+                  <button type="button" class="btn btn-primary btn-sm"
+                    (click)="btnSearchDistance_click()">Search</button>
+                </td>
+                <td colspan="2">{{loadingTextDistance}}</td>
+              </tr>
+              <tr>
+                <td colspan="3"><br></td>
+              </tr>
+              <tr>
+                <td colspan="3">Result : </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <label>{{calDistanceMile}} mile</label>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <label>{{calDistanceMetre}} m.</label>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <label>{{calDistanceWa}} wa</label>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="card-footer">
+            <table>
+              <tr>
+                <td>
+                  <input type="number" maxlength="50" placeholder="1" [(ngModel)]="txtDistanceValue1"
+                    (keyup.enter)='cmbDistance_onChange()'>
+                </td>
+                <td>
+                  <select class="custom-select" [(ngModel)]="selectedUnitDistance1"
+                    (ngModelChange)="cmbDistance_onChange()">
+                    <option *ngFor="let item of unitDistanceArry;let i=index" [value]="item.unitDistance">
+                      {{item.unitDisplay}}
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">Convert</td>
+              </tr>
+              <tr>
+                <td>
+                  <input type="number" readonly="true" maxlength="50" placeholder="1" [(ngModel)]="txtDistanceValue2">
+                </td>
+                <td>
+                  <select class="custom-select" [(ngModel)]="selectedUnitDistance2"
+                    (ngModelChange)="cmbDistance_onChange()">
+                    <option *ngFor="let item of unitDistanceArry;let i=index" [value]="item.unitDistance">
+                      {{item.unitDisplay}}
+                    </option>
+                  </select>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-6">
+        <div class="card border-primary mb-6">
+          <div class="card-header">Volume</div>
+          <div class="card-body">
+            <table style="width: 100%;">
+              <tr>
+                <td>
+                  <label>Value:</label>
+                </td>
+                <td>
+                  <input type="number" maxlength="50" placeholder="1" (keyup.enter)='btnSearchVolume_click()'
+                    [(ngModel)]="txtVolumeValue">
+                </td>
+                <td>
+                  <select class="custom-select" [(ngModel)]="selectedUnitVolume">
+                    <option *ngFor="let item of unitVolumeArry;let i=index" [value]="item.unitVolume">
+                      {{item.unitDisplay}}
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="1">
+                  <button type="button" class="btn btn-primary btn-sm" (click)="btnSearchVolume_click()">Search</button>
+                </td>
+                <td colspan="2">{{loadingTextVolume}}</td>
+              </tr>
+              <tr>
+                <td colspan="3"><br></td>
+              </tr>
+              <tr>
+                <td colspan="3">Result : </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <label>{{calunitMl}} mL</label>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <label>{{calunitCm3}} cm3.</label>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <label>{{calunitFlOz}} fl oz</label>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="card-footer">
+            <table>
+              <tr>
+                <td>
+                  <input type="number" maxlength="50" placeholder="1" [(ngModel)]="txtVolumeValue1"
+                    (keyup.enter)='cmbVolume_onChange()'>
+                </td>
+                <td>
+                  <select class="custom-select" [(ngModel)]="selectedUnitVolume1"
+                    (ngModelChange)="cmbVolume_onChange()">
+                    <option *ngFor="let item of unitVolumeArry;let i=index" [value]="item.unitVolume">
+                      {{item.unitDisplay}}
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">Convert</td>
+              </tr>
+              <tr>
+                <td>
+                  <input type="number" readonly="true" maxlength="50" placeholder="1" [(ngModel)]="txtVolumeValue2">
+                </td>
+                <td>
+                  <select class="custom-select" [(ngModel)]="selectedUnitVolume2"
+                    (ngModelChange)="cmbVolume_onChange()">
+                    <option *ngFor="let item of unitVolumeArry;let i=index" [value]="item.unitVolume">
+                      {{item.unitDisplay}}
+                    </option>
+                  </select>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card border-primary mb-6">
+          <div class="card-header">Speed</div>
+          <div class="card-body">
+            <table style="width: 100%;">
+              <tr>
+                <td>
+                  <label>Value:</label>
+                </td>
+                <td>
+                  <input type="number" maxlength="50" placeholder="1" (keyup.enter)='btnSearchSpeed_click()'
+                    [(ngModel)]="txtSpeedValue">
+                </td>
+                <td>
+                  <select class="custom-select" [(ngModel)]="selectedUnitSpeed">
+                    <option *ngFor="let item of unitSpeedArry;let i=index" [value]="item.unitSpeed">
+                      {{item.unitDisplay}}
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="1">
+                  <button type="button" class="btn btn-primary btn-sm" (click)="btnSearchSpeed_click()">Search</button>
+                </td>
+                <td colspan="2">{{loadingTextSpeed}}</td>
+              </tr>
+              <tr>
+                <td colspan="3"><br></td>
+              </tr>
+              <tr>
+                <td colspan="3">Result : </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <label>{{calunitMph}} mph</label>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <label>{{calunitMs}} m/s</label>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <label>{{calunitKmh}} km/h</label>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="card-footer">
+            <table>
+              <tr>
+                <td>
+                  <input type="number" maxlength="50" placeholder="1" [(ngModel)]="txtSpeedValue1"
+                    (keyup.enter)='cmbSpeed_onChange()'>
+                </td>
+                <td>
+                  <select class="custom-select" [(ngModel)]="selectedUnitSpeed1" (ngModelChange)="cmbSpeed_onChange()">
+                    <option *ngFor="let item of unitSpeedArry;let i=index" [value]="item.unitSpeed">
+                      {{item.unitDisplay}}
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">Convert</td>
+              </tr>
+              <tr>
+                <td>
+                  <input type="number" readonly="true" maxlength="50" placeholder="1" [(ngModel)]="txtSpeedValue2">
+                </td>
+                <td>
+                  <select class="custom-select" [(ngModel)]="selectedUnitSpeed2" (ngModelChange)="cmbSpeed_onChange()">
+                    <option *ngFor="let item of unitSpeedArry;let i=index" [value]="item.unitSpeed">
+                      {{item.unitDisplay}}
+                    </option>
+                  </select>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
